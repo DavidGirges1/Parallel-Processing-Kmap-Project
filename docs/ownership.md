@@ -4,6 +4,8 @@
 
 All source paths below start at `src/main/java/edu/team/kmeans/`. Put your own unit tests in the matching package under `src/test/java/edu/team/kmeans/`.
 
+In your editor, open `package-info.java` inside your source package for a detailed temporary coding checklist. The matching test package has a test checklist too. These blocks are marked `BEGIN TEMPORARY TEAM GUIDANCE` / `END TEMPORARY TEAM GUIDANCE` so they can be removed later without changing code.
+
 ## Jump to your role
 
 - [M1: Team leader and integration](#m1-team-leader-and-integration)
