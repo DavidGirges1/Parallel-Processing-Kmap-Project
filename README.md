@@ -18,7 +18,7 @@ Ask the team leader which role, **M1–M7**, is yours. These are role labels; na
 | [M4-AboAsal](docs/ownership.md#m4-centroid-math-stopping-and-sse) | Calculate cluster centers, stopping checks, and clustering error | [Issue #4](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/4) |
 | [M5](docs/ownership.md#m5-data-and-starting-centers) | Generate sample points and choose reproducible starting centers | [Issue #5](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/5) |
 | [M6](docs/ownership.md#m6-complete-program-tests-and-performance) | Check the complete program and measure real performance | [Issue #6](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/6) |
-| [M7](docs/ownership.md#m7-visualization-and-demo) | Draw points and centers using the Java program's results | [Issue #7](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/7) |
+| [Menna Mohamed](docs/ownership.md#m7-visualization-and-demo) | Draw points and centers using the Java program's results | [Issue #7](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/7) |
 
 Open [your member checklist](docs/ownership.md) for **your folders, your first task, your dependencies, and how to know you are done**.
 
