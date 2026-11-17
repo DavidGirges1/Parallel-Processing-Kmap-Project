@@ -10,7 +10,7 @@ Foundation [PR #8](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Proj
 4. Ask each member to accept the invitation and complete [Getting started](getting-started.md).
 5. Open each starter issue, use its **Assignees** section to select the member, and confirm their first small task.
 6. Walk M2–M5 through the shared method signatures before they start independent coding.
-7. Add `.github/CODEOWNERS` only after accounts/access are confirmed. This file tells GitHub whom to request for reviews; match both source/test paths to the member roles.
+7. Extend the existing M1-only `.github/CODEOWNERS` after other accounts/access are confirmed. This file tells GitHub whom to request for reviews; match both source/test paths to the member roles.
 
 ## Protect the shared branch
 

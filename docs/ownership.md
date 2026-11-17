@@ -1,6 +1,6 @@
 # What each member is responsible for
 
-**Start here after setup.** Ask the leader which M1–M7 role is yours. Names and GitHub assignments are still to be confirmed; these labels are not usernames.
+**Start here after setup.** Ask the leader which M1–M7 role is yours. M1 is DavidGirges1. Other names and GitHub assignments remain to be confirmed; M1–M7 are role labels, not usernames.
 
 All source paths below start at `src/main/java/edu/team/kmeans/`. Put your own unit tests in the matching package under `src/test/java/edu/team/kmeans/`.
 
@@ -267,4 +267,4 @@ You use M1's result types and M2/M3's real engine outputs. The shared engine sup
 3. Continue an independent piece, such as a fixed-data test, if one exists.
 4. Do not implement someone else's production logic just to bypass the dependency.
 
-Do not close your module issue after only its first small PR. Close it only when its full completion checklist is satisfied. CODEOWNERS and named assignments will be added after actual usernames/access are confirmed.
+Do not close your module issue after only its first small PR. Close it only when its full completion checklist is satisfied. CODEOWNERS currently routes shared M1 files to @DavidGirges1. Other review owners and named assignments will be added after actual usernames/access are confirmed. See [M1 handoff](m1-handoff.md).

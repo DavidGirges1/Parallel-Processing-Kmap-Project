@@ -26,6 +26,10 @@ Config requires positive `k`, `maxIterations`, `taskThreshold`, and `parallelism
 
 Results and snapshots require nonempty centroid/assignment collections, in-range cluster indices, positive completed-iteration counts, and nonnull finite points. SSE must be finite and nonnegative. Arrays are copied on input and access; centroid lists are immutable copies. Null inputs/elements throw `NullPointerException`; invalid numerical/state values throw `IllegalArgumentException`. These objects validate structure, not that a caller supplied the mathematically correct means or SSE.
 
+## Service input rules
+
+The Java comments in `api/` define the implementer contract: nonempty point/centroid lists without nulls, matching assignment-array lengths, valid cluster indices, and read-only inputs. Assignment writes every output position. Null values cause `NullPointerException`; invalid sizes/indices/parameters cause `IllegalArgumentException`. The interfaces themselves do not execute checks. M4 services and M2/M3 assignment implementations validate their own direct inputs; M5 provides dataset validation for complete fit calls. See [M1 handoff](m1-handoff.md).
+
 ## Engine policies for owner implementation
 
 - `fit` rejects empty input, invalid data, `K > unique points`, and initial centroid count different from `config.k()`. M5 provides reusable dataset validation. Use squared Euclidean distance for assignment and SSE; do not add other metrics before the core works.
@@ -40,11 +44,11 @@ Results and snapshots require nonempty centroid/assignment collections, in-range
 
 M3 implements real `RecursiveAction`/equivalent Fork/Join tasks on chunk ranges. Tasks read identical centroid coordinates and write exclusively within their assigned output indices. Finish/join all tasks before M4 reads the assignments. Do not spawn one task per point or let tasks mutate shared centroid sums/counts. If updates are later parallelized, use local accumulators and a safe reduction.
 
-The parallel engine owns one configured `ForkJoinPool` per engine instance, reused across iterations/fits; M3 should expose `AutoCloseable` on its concrete engine and shut down/wait for its owned pool in `close()`. Do not shut down the common pool. Document pool creation/teardown separately from measured fit time. `taskThreshold` controls split granularity; `parallelism` controls pool workers.
+The parallel engine owns a configured `ForkJoinPool`, reused across iterations and fits with the same worker count; M3 should expose `AutoCloseable` on its concrete engine and shut down/wait for its owned pool in `close()`. Do not shut down the common pool. Document pool creation/teardown separately from measured fit time. `taskThreshold` controls split granularity; `parallelism` controls pool workers. Honor the configuration passed to each fit: if the worker count changes between fits, replace the idle owned pool, and configure assignment with that fit's threshold. Never silently reuse incompatible settings.
 
 ## Optional observation
 
-`IterationObserver` is a hook for M2's shared-engine constructor, separate from the three-argument `KMeans.fit` API. The owner implements a default constructor using `IterationObserver.NONE` and an opt-in observer constructor. Check for `NONE` before allocating a snapshot, so headless benchmarking pays no snapshot-copy cost. Notify synchronously after all Fork/Join work and centroid updating finish; the UI must marshal updates to its own thread. Observer errors propagate and stop the run; callbacks must not reenter the engine. Engine instances need not support concurrent fits.
+`IterationObserver` is a hook for M2's shared-engine constructor, separate from the three-argument `KMeans.fit` API. M2 provides an engine constructor taking its assignment/math collaborators and using `IterationObserver.NONE`, plus an overload accepting an observer. Agree concrete constructor signatures with M3 during integration; a no-argument constructor is not required. Check for `NONE` before allocating a snapshot, so headless benchmarking pays no snapshot-copy cost. Notify synchronously after all Fork/Join work and centroid updating finish; the UI must marshal updates to its own thread. Observer errors propagate and stop the run; callbacks must not reenter the engine. Engine instances need not support concurrent fits.
 
 M7 consumes Java results/snapshots. UI toolkit selection is pending. Development mocks must be labeled and kept separate from measured results. A JavaScript-only clustering simulation does not replace Java Fork/Join.
 
