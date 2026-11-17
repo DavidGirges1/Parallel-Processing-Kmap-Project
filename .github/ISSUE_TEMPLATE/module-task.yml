@@ -1,0 +1,32 @@
+name: Module task
+description: A scoped engineering task with dependencies and acceptance evidence
+title: '[M#] '
+body:
+  - type: input
+    id: owner
+    attributes:
+      label: Owner and scoped files
+      description: Use M1–M7 and real usernames only when confirmed.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Required behavior and acceptance criteria
+      description: Identify required functionality, team architecture, or optional bonus.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and shared contracts
+      description: Link blocking issues and any API agreement needed.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Tests and demo evidence
+      description: State how completion will be verified. Supply actual results in the PR.
+    validations:
+      required: true

@@ -1,0 +1,13 @@
+/target/
+/.superpowers/
+/.worktrees/
+/.idea/
+/.vscode/
+*.iml
+*.class
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
