@@ -13,7 +13,7 @@ Ask the team leader which role, **M1–M7**, is yours. These are role labels; na
 | Role | Your responsibility in plain language | Your task |
 |---|---|---|
 | [M1 · leader](docs/ownership.md#m1-team-leader-and-integration) | Keep shared types consistent and connect everyone's work | [Issue #1](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/1) |
-| [M2](docs/ownership.md#m2-sequential-algorithm-and-shared-loop) | Build the sequential algorithm and the loop both versions use | [Issue #2](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/2) |
+| [M2 · Beshoy Atef](docs/ownership.md#m2-sequential-algorithm-and-shared-loop) | Build the sequential algorithm and the loop both versions use | [Issue #2](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/2) |
 | [M3](docs/ownership.md#m3-parallel-assignment-with-forkjoin) | Make point assignment run in parallel with Fork/Join | [Issue #3](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/3) |
 | [M4](docs/ownership.md#m4-centroid-math-stopping-and-sse) | Calculate cluster centers, stopping checks, and clustering error | [Issue #4](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/4) |
 | [M5](docs/ownership.md#m5-data-and-starting-centers) | Generate sample points and choose reproducible starting centers | [Issue #5](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/5) |
