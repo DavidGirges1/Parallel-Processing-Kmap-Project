@@ -9,9 +9,16 @@ import java.util.List;
 @FunctionalInterface
 public interface KMeans {
     /**
-     * Cluster points from explicitly supplied initial coordinates. Reject empty
-     * data, K above distinct input count, and initial centroid count != config.k().
-     * Return final assignments/SSE evaluated against the returned centroids.
+     * Cluster nonempty points from explicitly supplied initial coordinates.
+     * Reject K above distinct input count and initial centroid count != config.k().
+     * Honor all supplied configuration values, including this fit's task settings.
+     * Do not mutate caller data. Return k centroids and one assignment per point,
+     * with final assignments/SSE evaluated against those returned centroids.
+     * Iterations count completed assignment/update cycles, from 1 to maxIterations.
+     * Engine instances need not support concurrent fits.
+     *
+     * @throws NullPointerException for null arguments or point elements
+     * @throws IllegalArgumentException for empty data, invalid K, or mismatched starts
      */
     KMeansResult fit(List<Point> points, List<Point> initialCentroids, KMeansConfig config);
 }

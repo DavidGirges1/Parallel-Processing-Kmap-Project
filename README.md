@@ -22,6 +22,8 @@ Ask the team leader which role, **M1–M7**, is yours. These are role labels; na
 
 Open [your member checklist](docs/ownership.md) for **your folders, your first task, your dependencies, and how to know you are done**.
 
+The leader's [contract handoff](docs/m1-handoff.md) identifies what is ready to use and what still needs integration. M1 is DavidGirges1; other member accounts remain to be confirmed.
+
 ## 2. Set up your computer once
 
 Follow [the first-time setup guide](docs/getting-started.md):

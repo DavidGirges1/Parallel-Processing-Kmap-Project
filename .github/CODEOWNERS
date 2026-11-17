@@ -1,0 +1,16 @@
+# Confirmed M1 account only. Add other owners after their usernames/access are known.
+# No catch-all: module-local reviews should not all be routed through the leader.
+/src/main/java/edu/team/kmeans/api/ @DavidGirges1
+/src/main/java/edu/team/kmeans/model/ @DavidGirges1
+/src/main/java/edu/team/kmeans/app/ @DavidGirges1
+/src/test/java/edu/team/kmeans/api/ @DavidGirges1
+/src/test/java/edu/team/kmeans/model/ @DavidGirges1
+/src/test/java/edu/team/kmeans/app/ @DavidGirges1
+/pom.xml @DavidGirges1
+/mvnw @DavidGirges1
+/mvnw.cmd @DavidGirges1
+/.mvn/ @DavidGirges1
+/.github/ @DavidGirges1
+/AGENTS.md @DavidGirges1
+/docs/architecture.md @DavidGirges1
+/docs/m1-handoff.md @DavidGirges1
