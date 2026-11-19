@@ -122,7 +122,7 @@ class MathServicesTest {
 
     @Test
     void sseWorksWithNegativeValuesAndOneCluster() {
-        assertEquals(8.0, sse.calculate(
+        assertEquals(4.0, sse.calculate(
                 List.of(new Point(-1, -1), new Point(1, 1)),
                 new int[]{0, 0}, List.of(new Point(0, 0))));
     }
