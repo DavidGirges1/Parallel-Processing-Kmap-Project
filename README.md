@@ -20,8 +20,6 @@ Ask the team leader which role, **M1–M7**, is yours. These are role labels; na
 | [M6 - George](docs/ownership.md#m6-complete-program-tests-and-performance) | Check the complete program and measure real performance | [Issue #6](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/6) |
 | [M7](docs/ownership.md#m7-visualization-and-demo) | Draw points and centers using the Java program's results | [Issue #7](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/7) |
 
-**M4 contribution credit:** [Ahmed Mahmoud Youssef AboAsal (@aboasal)](https://github.com/aboasal) authored the original Math Engine implementations. [PR #14](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/pull/14) preserved his original commit and added mathematical edge-case fixes and 11 unit tests by [David Girgis (@DavidGirges1)](https://github.com/DavidGirges1). The module is merged; integration into the sequential/parallel engines remains separate team work.
-
 Open [your member checklist](docs/ownership.md) for **your folders, your first task, your dependencies, and how to know you are done**.
 
 The leader's [contract handoff](docs/m1-handoff.md) identifies what is ready to use and what still needs integration. M1 is DavidGirges1; other member accounts remain to be confirmed.
