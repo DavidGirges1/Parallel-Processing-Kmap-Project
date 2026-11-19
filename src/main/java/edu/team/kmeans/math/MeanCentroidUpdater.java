@@ -9,6 +9,10 @@ import java.util.Objects;
 /**
  * Recomputes each cluster centroid as the arithmetic mean of its assigned points.
  * Clusters with no assigned points retain their previous centroid.
+ *
+ * <p>Each contribution is divided by its cluster size before summing, so finite
+ * point coordinates with finite means do not overflow an unscaled running sum.
+ * Calculations still use ordinary double precision and are subject to rounding.
  */
 public final class MeanCentroidUpdater implements CentroidUpdater {
 
@@ -36,20 +40,24 @@ public final class MeanCentroidUpdater implements CentroidUpdater {
             Objects.requireNonNull(previousCentroids.get(c), "previousCentroids[" + c + "]");
         }
 
-        double[] sumX = new double[k];
-        double[] sumY = new double[k];
         int[] counts = new int[k];
-
         for (int i = 0; i < points.size(); i++) {
-            Point point = Objects.requireNonNull(points.get(i), "points[" + i + "]");
+            Objects.requireNonNull(points.get(i), "points[" + i + "]");
             int cluster = assignments[i];
             if (cluster < 0 || cluster >= k) {
                 throw new IllegalArgumentException(
                         "Assignment index out of range at position " + i + ": " + cluster);
             }
-            sumX[cluster] += point.x();
-            sumY[cluster] += point.y();
             counts[cluster]++;
+        }
+
+        double[] meanX = new double[k];
+        double[] meanY = new double[k];
+        for (int i = 0; i < points.size(); i++) {
+            Point point = points.get(i);
+            int cluster = assignments[i];
+            meanX[cluster] += point.x() / counts[cluster];
+            meanY[cluster] += point.y() / counts[cluster];
         }
 
         List<Point> updated = new ArrayList<>(k);
@@ -57,13 +65,11 @@ public final class MeanCentroidUpdater implements CentroidUpdater {
             if (counts[c] == 0) {
                 updated.add(previousCentroids.get(c));
             } else {
-                double meanX = sumX[c] / counts[c];
-                double meanY = sumY[c] / counts[c];
-                if (!Double.isFinite(meanX) || !Double.isFinite(meanY)) {
+                if (!Double.isFinite(meanX[c]) || !Double.isFinite(meanY[c])) {
                     throw new IllegalArgumentException(
                             "Computed centroid coordinates must be finite for cluster " + c);
                 }
-                updated.add(new Point(meanX, meanY));
+                updated.add(new Point(meanX[c], meanY[c]));
             }
         }
 
