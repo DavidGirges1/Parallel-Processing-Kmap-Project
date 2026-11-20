@@ -6,46 +6,65 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SyntheticDataGenerator {
-    public List<Point> GeneratePoints(int numPoints, int numClusters, double spread, long seed){
+/**
+ * Reproducible generator of two-dimensional Gaussian clusters.
+ *
+ * <p>First samples {@code numClusters} centers uniformly from [0, 100) on each
+ * axis using {@code seed}; then assigns successive points round-robin to those
+ * centers, adding independent Gaussian noise with standard deviation
+ * {@code spread} on each axis. A zero spread produces exact center coordinates.
+ * Both the point count and cluster count must be positive, and the number of
+ * clusters must not exceed the number of points. Spread must be finite and
+ * nonnegative. The output list and its Point elements are immutable.</p>
+ *
+ * <p>The generated cluster centers are for constructing sample data, not the
+ * initial centroids passed to K-Means. Call {@link RandomCentroidInitializer}
+ * on this returned list and reuse its explicit result for both engines.</p>
+ */
+public final class SyntheticDataGenerator {
 
-        if(numPoints < 1)
-        {
-            throw new IllegalArgumentException("Number of Points must be greater than 0");
+    /**
+     * @param numPoints total number of generated points, at least one
+     * @param numClusters number of synthetic Gaussian centers, 1..numPoints
+     * @param spread Gaussian standard deviation per coordinate, finite and >= 0
+     * @param seed seed used for reproducibility (any long)
+     * @return unmodifiable list of finite 2D points in round-robin cluster order
+     * @throws IllegalArgumentException for invalid parameters or non-finite generated coordinates
+     */
+    public List<Point> generatePoints(int numPoints, int numClusters, double spread, long seed) {
+        if (numPoints <= 0) {
+            throw new IllegalArgumentException("numPoints must be positive");
         }
-        if(numClusters < 1)
-        {
-            throw new IllegalArgumentException("Number of Clusters must be greater than 0");
+        if (numClusters <= 0 || numClusters > numPoints) {
+            throw new IllegalArgumentException("numClusters must be between 1 and numPoints");
         }
-        if(spread < 0.0)
-        {
-            throw new IllegalArgumentException("Spread must be greater than 0");
+        if (!Double.isFinite(spread) || spread < 0.0) {
+            throw new IllegalArgumentException("spread must be finite and nonnegative");
         }
 
-
-
-        Random rand = new Random(seed);
-        double[][] centroids = new double[numPoints][2];
-        for(int i = 0; i < numClusters; i++)
-        {
-            centroids[i][0] = rand.nextDouble() * 100.0;
-            centroids[i][1] = rand.nextDouble() * 100.0;
+        Random random = new Random(seed);
+        double[][] centers = new double[numClusters][2];
+        for (int cluster = 0; cluster < numClusters; cluster++) {
+            centers[cluster][0] = random.nextDouble() * 100.0;
+            centers[cluster][1] = random.nextDouble() * 100.0;
         }
-        List<Point> points = new ArrayList<Point>();
 
-        for(int j  = 0; j < numPoints; j++)
-        {
-            double[] centroid = centroids[j % numClusters];
-            double x = centroid[0] *  rand.nextGaussian() * spread;
-            double y = centroid[1] * rand.nextGaussian() * spread;
+        List<Point> points = new ArrayList<>(numPoints);
+        for (int index = 0; index < numPoints; index++) {
+            double[] center = centers[index % numClusters];
+            double x = center[0] + random.nextGaussian() * spread;
+            double y = center[1] + random.nextGaussian() * spread;
+            if (!Double.isFinite(x) || !Double.isFinite(y)) {
+                throw new IllegalArgumentException("spread produces non-finite coordinates");
+            }
             points.add(new Point(x, y));
         }
-
-        return points;
-
-
-
-
+        return List.copyOf(points);
     }
 
+    /** Preserves the method name from Bola Hany's original submission. */
+    @Deprecated
+    public List<Point> GeneratePoints(int numPoints, int numClusters, double spread, long seed) {
+        return generatePoints(numPoints, numClusters, spread, seed);
+    }
 }
