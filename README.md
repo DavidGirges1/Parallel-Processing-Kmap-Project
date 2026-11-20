@@ -4,25 +4,35 @@
 
 We are building a Java program that groups 2D points into clusters. We will run it sequentially and with Java Fork/Join, then compare runtime and clustering quality.
 
-**First time using GitHub? Follow these steps in order. You do not need to learn Git commands first.**
+## Project progress
+
+| Stage | Status | Deliverables |
+|---|---|---|
+| Milestone 1 · Foundation | **Complete** | Shared Java contracts and assignment fixture, centroid math, SSE, and seeded dataset generation with reproducible starting centroids. |
+| Milestone 2 · Working K-Means | **Ready to start** | Sequential reference and shared iteration loop, Fork/Join point assignment, and a correctness comparison using the same data and starting centroids. |
+| Evaluation and demo | **Upcoming** | Repeatable runtime and SSE comparisons, report, presentation, and visualization. |
+
+**Starting Milestone 2?** Pull the latest `main` and open the [Milestone 1 handoff](HANDOFF.md). M2 and M3 can start their assignment strategies independently with the shared fixture. Integrate the sequential reference first, then run the Fork/Join strategy through the same loop.
+
+**First time using GitHub?** Follow the setup steps below.
 
 ## 1. Find your role
 
-Ask the team leader which role, **M1–M7**, is yours. These are role labels; names and GitHub accounts still need to be confirmed.
+Confirm your role (**M1–M7**) with the team leader.
 
-| Role | Your responsibility in plain language | Your task |
-|---|---|---|
-| [M1 · leader](docs/ownership.md#m1-team-leader-and-integration) David E. Fam | Keep shared types consistent and connect everyone's work | [Issue #1](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/1) |
-| [M2 · Beshoy Atef](docs/ownership.md#m2-sequential-algorithm-and-shared-loop) | Build the sequential algorithm and the loop both versions use | [Issue #2](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/2) |
-| [AbdalluhMahmoud](docs/ownership.md#m3-parallel-assignment-with-forkjoin) | Make point assignment run in parallel with Fork/Join | [Issue #3](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/AbdalluhMahmoud) |
-| [M4 · Ahmed AboAsal (@aboasal)](docs/ownership.md#m4-centroid-math-stopping-and-sse) | Calculate cluster centers, stopping checks, and clustering error | [Issue #4](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/4) |
-| [M5](docs/ownership.md#m5-data-and-starting-centers) | Generate sample points and choose reproducible starting centers | [Issue #5](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/5) |
-| [M6 - George](docs/ownership.md#m6-complete-program-tests-and-performance) | Check the complete program and measure real performance | [Issue #6](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/6) |
-| [M7](docs/ownership.md#m7-visualization-and-demo) | Draw points and centers using the Java program's results | [Issue #7](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/7) |
+| Role | Responsibility | Issue | Status |
+|---|---|---|---|
+| [M1 · leader](docs/ownership.md#m1-team-leader-and-integration) David E. Fam | Keep shared types consistent and connect everyone's work | [Issue #1](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/1) | Foundation complete · app integration pending |
+| [M2 · Beshoy Atef](docs/ownership.md#m2-sequential-algorithm-and-shared-loop) | Build the sequential algorithm and the loop both versions use | [Issue #2](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/2) | Ready to start |
+| [M3 · AbdalluhMahmoud](docs/ownership.md#m3-parallel-assignment-with-forkjoin) | Make point assignment run in parallel with Fork/Join | [Issue #3](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/3) | Ready to start |
+| [M4 · Ahmed AboAsal (@aboasal)](docs/ownership.md#m4-centroid-math-stopping-and-sse) | Calculate cluster centers, stopping checks, and clustering error | [Issue #4](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/4) | **Complete** |
+| [M5 · Bola Hany (@poula-eng)](docs/ownership.md#m5-data-and-starting-centers) | Generate sample points and choose reproducible starting centers | [Issue #5](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/5) | **Complete** |
+| [M6 · George](docs/ownership.md#m6-complete-program-tests-and-performance) | Check the complete program and measure real performance | [Issue #6](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/6) | Correctness tests can start · benchmarks need both engines |
+| [M7](docs/ownership.md#m7-visualization-and-demo) | Draw points and centers using the Java program's results | [Issue #7](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/7) | Real-data demo needs engine output |
 
 Open [your member checklist](docs/ownership.md) for **your folders, your first task, your dependencies, and how to know you are done**.
 
-The leader's [contract handoff](docs/m1-handoff.md) identifies what is ready to use and what still needs integration. M1 is DavidGirges1; other member accounts remain to be confirmed.
+See the [M1 contract guide](docs/m1-handoff.md) for the original API and fixture conventions.
 
 ## 2. Set up your computer once
 
@@ -44,8 +54,6 @@ The guide explains each step and gives separate Windows and macOS/Linux commands
 4. Write a small piece of your module and tests for it.
 5. Run the build before sharing your work.
 
-M2 and M3 can start assignment while M4 and M5 work independently. See [who starts when](docs/workflow.md); you do not need to wait for the whole program to exist.
-
 ## 4. Share your work for review
 
 1. Save a **commit**: a named checkpoint of your changes.
@@ -55,17 +63,6 @@ M2 and M3 can start assignment while M4 and M5 work independently. See [who star
 5. Merge after review and checks pass, coordinating with the leader.
 
 [Contributing](CONTRIBUTING.md) shows the Desktop/GitHub steps. Keep your task on its own branch until it is reviewed.
-
-## What is ready, and what still needs building?
-
-| Ready | Still team work |
-|---|---|
-| Java 17/Maven setup and automated checks | Sequential and parallel K-Means |
-| Shared models and service interfaces | Math implementations and generated datasets |
-| Model tests and a small assignment fixture | Complete-program tests and real benchmarks |
-| Contribution guides and starter issues | Visualization and a runnable demo |
-
-Foundation PR [#8](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/pull/8) is merged. There is **no runnable clustering application yet**. A successful foundation build does not mean the assignment is finished.
 
 ## Find the right guide
 
