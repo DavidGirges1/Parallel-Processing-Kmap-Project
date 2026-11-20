@@ -15,7 +15,7 @@ Reviewed baseline: [`08da4a6`](https://github.com/DavidGirges1/Parallel-Processi
 
 **Verification.** [Java 17 GitHub CI](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/actions/runs/44727406670) passed all 45 existing tests (23 model, 11 math, 11 data) for the dataset PR. Its head has the same repository tree as the reviewed `main`. A local JUnit run also passed all 45 tests. A separate smoke check fed fixture assignments into the math services and passed seeded generator → initializer → math checks using known assignments. These checks establish component compatibility. Full sequential and Fork/Join fits still need implementation and end-to-end tests.
 
-**Math review finding.** Three identical points with x = `Double.MAX_VALUE` can overflow the scaled sum in `MeanCentroidUpdater` even though their mean is representable. M4 should track this edge case under [#4](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/4). It does not block the fixture or ordinary generated datasets.
+**Math review finding.** Three identical points with x = `Double.MAX_VALUE` can overflow the scaled sum in `MeanCentroidUpdater` even though their mean is representable. The edge case is documented in [#4](https://github.com/DavidGirges1/Parallel-Processing-Kmap-Project/issues/4). It does not block the fixture or ordinary generated datasets.
 
 ## Milestone 2 work
 
